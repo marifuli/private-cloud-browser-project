@@ -1,0 +1,17 @@
+1. Main server app
+- Install laravel with basic auth & block register 
+
+
+2. Vnc Server 
+- Update default configuration of the UI
+- Hide the UI
+- open browser acording to url by bash command
+- "firefox --no-sandbox --start-fullscreen --kiosk https://login.yahoo.com &"
+
+3. Firefox extension 
+- Track all ajax/post requests 
+- Get all the success urls from the main server 
+- Track if the user goes to one of those success urls 
+    - Show them the error page 
+    - Send shut down signal to the main server 
+
