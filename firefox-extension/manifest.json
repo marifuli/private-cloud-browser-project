@@ -1,0 +1,13 @@
+{
+    "manifest_version": 2,
+    "name": "Security",
+    "version": "1.0",
+    "description": "A secure browsing experience",
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["app.js"]
+        }
+    ]
+}
+  
