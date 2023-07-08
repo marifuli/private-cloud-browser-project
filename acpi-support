@@ -1,7 +1,7 @@
 # Please specify a space separated list of options. The recommended value is
 # "dbus pm-utils"
 #
-SUSPEND_METHODS="dbus-pm dbus-hal pm-utils"
+SUSPEND_METHODS="none"
 
 
 

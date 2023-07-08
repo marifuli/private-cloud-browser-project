@@ -16,20 +16,19 @@ apt update \
 && git clone https://github.com/marifuli/private-cloud-browser-project.git \
 && cd private-cloud-browser-project
 
-cat acpi-support > /etc/default/acpi-support
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout '0' && gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout '0'
 
 myuser="root"
 mypasswd="12345678"
-mkdir /home/$myuser/.vnc
-echo $mypasswd | vncpasswd -f > /home/$myuser/.vnc/passwd
-chown -R $myuser:$myuser /home/$myuser/.vnc
-chmod 0600 /home/$myuser/.vnc/passwd
+mkdir /$myuser/.vnc
+echo $mypasswd | vncpasswd -f > /$myuser/.vnc/passwd
+chown -R $myuser:$myuser /$myuser/.vnc
+chmod 0600 /$myuser/.vnc/passwd
 
 vncserver
 vncserver -kill :1
 vncserver
-export DISPLAY=:1 #set display
+export DISPLAY=:1 && firefox --no-sandbox --start-fullscreen --kiosk https://login.yahoo.com & 
 
 echo "localhost" > main_ip.txt
-cd novnc
-./utils/novnc_proxy --vnc localhost:5901 --listen 81 &
+./novnc/utils/novnc_proxy --vnc localhost:5901 --listen 81 &
