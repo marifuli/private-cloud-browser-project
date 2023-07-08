@@ -20,7 +20,7 @@ Route::redirect('/', 'home');
 Route::get('test', function() { 
 
 });
-Auth::routes(['register' => false]);
+Auth::routes(['register' => true]);
 
 Route::middleware('auth')->group(function () {
 
