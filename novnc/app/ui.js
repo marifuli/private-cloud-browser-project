@@ -49,7 +49,7 @@ const UI = {
             }
 
             return new Promise((resolve, reject) => {
-                document.addEventListener('DOMContentLoaded', () => UI.start().then(resolve).catch(reject));
+                document?.addEventListener('DOMContentLoaded', () => UI.start().then(resolve).catch(reject));
             });
         });
     },
@@ -109,7 +109,7 @@ const UI = {
         UI.addClipboardHandlers();
         UI.addSettingsHandlers();
         document.getElementById("noVNC_status")
-            .addEventListener('click', UI.hideStatus);
+            ?.addEventListener('click', UI.hideStatus);
 
         // Bootstrap fallback input handler
         UI.keyboardinputReset();
@@ -216,130 +216,130 @@ const UI = {
 
     addControlbarHandlers() {
         document.getElementById("noVNC_control_bar")
-            .addEventListener('mousemove', UI.activateControlbar);
+            ?.addEventListener('mousemove', UI.activateControlbar);
         document.getElementById("noVNC_control_bar")
-            .addEventListener('mouseup', UI.activateControlbar);
+            ?.addEventListener('mouseup', UI.activateControlbar);
         document.getElementById("noVNC_control_bar")
-            .addEventListener('mousedown', UI.activateControlbar);
+            ?.addEventListener('mousedown', UI.activateControlbar);
         document.getElementById("noVNC_control_bar")
-            .addEventListener('keydown', UI.activateControlbar);
+            ?.addEventListener('keydown', UI.activateControlbar);
 
         document.getElementById("noVNC_control_bar")
-            .addEventListener('mousedown', UI.keepControlbar);
+            ?.addEventListener('mousedown', UI.keepControlbar);
         document.getElementById("noVNC_control_bar")
-            .addEventListener('keydown', UI.keepControlbar);
+            ?.addEventListener('keydown', UI.keepControlbar);
 
         document.getElementById("noVNC_view_drag_button")
-            .addEventListener('click', UI.toggleViewDrag);
+            ?.addEventListener('click', UI.toggleViewDrag);
 
         document.getElementById("noVNC_control_bar_handle")
-            .addEventListener('mousedown', UI.controlbarHandleMouseDown);
+            ?.addEventListener('mousedown', UI.controlbarHandleMouseDown);
         document.getElementById("noVNC_control_bar_handle")
-            .addEventListener('mouseup', UI.controlbarHandleMouseUp);
+            ?.addEventListener('mouseup', UI.controlbarHandleMouseUp);
         document.getElementById("noVNC_control_bar_handle")
-            .addEventListener('mousemove', UI.dragControlbarHandle);
+            ?.addEventListener('mousemove', UI.dragControlbarHandle);
         // resize events aren't available for elements
-        window.addEventListener('resize', UI.updateControlbarHandle);
+        window?.addEventListener('resize', UI.updateControlbarHandle);
 
         const exps = document.getElementsByClassName("noVNC_expander");
         for (let i = 0;i < exps.length;i++) {
-            exps[i].addEventListener('click', UI.toggleExpander);
+            exps[i]?.addEventListener('click', UI.toggleExpander);
         }
     },
 
     addTouchSpecificHandlers() {
         document.getElementById("noVNC_keyboard_button")
-            .addEventListener('click', UI.toggleVirtualKeyboard);
+            ?.addEventListener('click', UI.toggleVirtualKeyboard);
 
         UI.touchKeyboard = new Keyboard(document.getElementById('noVNC_keyboardinput'));
         UI.touchKeyboard.onkeyevent = UI.keyEvent;
         UI.touchKeyboard.grab();
         document.getElementById("noVNC_keyboardinput")
-            .addEventListener('input', UI.keyInput);
+            ?.addEventListener('input', UI.keyInput);
         document.getElementById("noVNC_keyboardinput")
-            .addEventListener('focus', UI.onfocusVirtualKeyboard);
+            ?.addEventListener('focus', UI.onfocusVirtualKeyboard);
         document.getElementById("noVNC_keyboardinput")
-            .addEventListener('blur', UI.onblurVirtualKeyboard);
+            ?.addEventListener('blur', UI.onblurVirtualKeyboard);
         document.getElementById("noVNC_keyboardinput")
-            .addEventListener('submit', () => false);
+            ?.addEventListener('submit', () => false);
 
         document.documentElement
-            .addEventListener('mousedown', UI.keepVirtualKeyboard, true);
+            ?.addEventListener('mousedown', UI.keepVirtualKeyboard, true);
 
         document.getElementById("noVNC_control_bar")
-            .addEventListener('touchstart', UI.activateControlbar);
+            ?.addEventListener('touchstart', UI.activateControlbar);
         document.getElementById("noVNC_control_bar")
-            .addEventListener('touchmove', UI.activateControlbar);
+            ?.addEventListener('touchmove', UI.activateControlbar);
         document.getElementById("noVNC_control_bar")
-            .addEventListener('touchend', UI.activateControlbar);
+            ?.addEventListener('touchend', UI.activateControlbar);
         document.getElementById("noVNC_control_bar")
-            .addEventListener('input', UI.activateControlbar);
+            ?.addEventListener('input', UI.activateControlbar);
 
         document.getElementById("noVNC_control_bar")
-            .addEventListener('touchstart', UI.keepControlbar);
+            ?.addEventListener('touchstart', UI.keepControlbar);
         document.getElementById("noVNC_control_bar")
-            .addEventListener('input', UI.keepControlbar);
+            ?.addEventListener('input', UI.keepControlbar);
 
         document.getElementById("noVNC_control_bar_handle")
-            .addEventListener('touchstart', UI.controlbarHandleMouseDown);
+            ?.addEventListener('touchstart', UI.controlbarHandleMouseDown);
         document.getElementById("noVNC_control_bar_handle")
-            .addEventListener('touchend', UI.controlbarHandleMouseUp);
+            ?.addEventListener('touchend', UI.controlbarHandleMouseUp);
         document.getElementById("noVNC_control_bar_handle")
-            .addEventListener('touchmove', UI.dragControlbarHandle);
+            ?.addEventListener('touchmove', UI.dragControlbarHandle);
     },
 
     addExtraKeysHandlers() {
         document.getElementById("noVNC_toggle_extra_keys_button")
-            .addEventListener('click', UI.toggleExtraKeys);
+            ?.addEventListener('click', UI.toggleExtraKeys);
         document.getElementById("noVNC_toggle_ctrl_button")
-            .addEventListener('click', UI.toggleCtrl);
+            ?.addEventListener('click', UI.toggleCtrl);
         document.getElementById("noVNC_toggle_windows_button")
-            .addEventListener('click', UI.toggleWindows);
+            ?.addEventListener('click', UI.toggleWindows);
         document.getElementById("noVNC_toggle_alt_button")
-            .addEventListener('click', UI.toggleAlt);
+            ?.addEventListener('click', UI.toggleAlt);
         document.getElementById("noVNC_send_tab_button")
-            .addEventListener('click', UI.sendTab);
+            ?.addEventListener('click', UI.sendTab);
         document.getElementById("noVNC_send_esc_button")
-            .addEventListener('click', UI.sendEsc);
+            ?.addEventListener('click', UI.sendEsc);
         document.getElementById("noVNC_send_ctrl_alt_del_button")
-            .addEventListener('click', UI.sendCtrlAltDel);
+            ?.addEventListener('click', UI.sendCtrlAltDel);
     },
 
     addMachineHandlers() {
         document.getElementById("noVNC_shutdown_button")
-            .addEventListener('click', () => UI.rfb.machineShutdown());
+            ?.addEventListener('click', () => UI.rfb.machineShutdown());
         document.getElementById("noVNC_reboot_button")
-            .addEventListener('click', () => UI.rfb.machineReboot());
+            ?.addEventListener('click', () => UI.rfb.machineReboot());
         document.getElementById("noVNC_reset_button")
-            .addEventListener('click', () => UI.rfb.machineReset());
+            ?.addEventListener('click', () => UI.rfb.machineReset());
         document.getElementById("noVNC_power_button")
-            .addEventListener('click', UI.togglePowerPanel);
+            ?.addEventListener('click', UI.togglePowerPanel);
     },
 
     addConnectionControlHandlers() {
         document.getElementById("noVNC_disconnect_button")
-            .addEventListener('click', UI.disconnect);
+            ?.addEventListener('click', UI.disconnect);
         document.getElementById("noVNC_connect_button")
-            .addEventListener('click', UI.connect);
+            ?.addEventListener('click', UI.connect);
         setTimeout(() => {
             UI.connect()
         }, 1000);
         document.getElementById("noVNC_cancel_reconnect_button")
-            .addEventListener('click', UI.cancelReconnect);
+            ?.addEventListener('click', UI.cancelReconnect);
 
         document.getElementById("noVNC_approve_server_button")
-            .addEventListener('click', UI.approveServer);
+            ?.addEventListener('click', UI.approveServer);
         document.getElementById("noVNC_reject_server_button")
-            .addEventListener('click', UI.rejectServer);
+            ?.addEventListener('click', UI.rejectServer);
         document.getElementById("noVNC_credentials_button")
-            .addEventListener('click', UI.setCredentials);
+            ?.addEventListener('click', UI.setCredentials);
     },
 
     addClipboardHandlers() {
         document.getElementById("noVNC_clipboard_button")
-            .addEventListener('click', UI.toggleClipboardPanel);
+            ?.addEventListener('click', UI.toggleClipboardPanel);
         document.getElementById("noVNC_clipboard_text")
-            .addEventListener('change', UI.clipboardSend);
+            ?.addEventListener('change', UI.clipboardSend);
     },
 
     // Add a call to save settings when the element changes,
@@ -349,12 +349,12 @@ const UI = {
         if (changeFunc === undefined) {
             changeFunc = () => UI.saveSetting(name);
         }
-        settingElem.addEventListener('change', changeFunc);
+        settingElem?.addEventListener('change', changeFunc);
     },
 
     addSettingsHandlers() {
         document.getElementById("noVNC_settings_button")
-            .addEventListener('click', UI.toggleSettingsPanel);
+            ?.addEventListener('click', UI.toggleSettingsPanel);
 
         UI.addSettingChangeHandler('encrypt');
         UI.addSettingChangeHandler('resize');
@@ -383,12 +383,12 @@ const UI = {
 
     addFullscreenHandlers() {
         document.getElementById("noVNC_fullscreen_button")
-            .addEventListener('click', UI.toggleFullscreen);
+            ?.addEventListener('click', UI.toggleFullscreen);
 
-        window.addEventListener('fullscreenchange', UI.updateFullscreenButton);
-        window.addEventListener('mozfullscreenchange', UI.updateFullscreenButton);
-        window.addEventListener('webkitfullscreenchange', UI.updateFullscreenButton);
-        window.addEventListener('msfullscreenchange', UI.updateFullscreenButton);
+        window?.addEventListener('fullscreenchange', UI.updateFullscreenButton);
+        window?.addEventListener('mozfullscreenchange', UI.updateFullscreenButton);
+        window?.addEventListener('webkitfullscreenchange', UI.updateFullscreenButton);
+        window?.addEventListener('msfullscreenchange', UI.updateFullscreenButton);
     },
 
 /* ------^-------
@@ -578,7 +578,7 @@ const UI = {
         const barDisplayStyle = window.getComputedStyle(bar).display;
         if (barDisplayStyle !== 'none') {
             bar.style.transitionDuration = '0s';
-            bar.addEventListener('transitionend', () => bar.style.transitionDuration = '');
+            bar?.addEventListener('transitionend', () => bar.style.transitionDuration = '');
         }
 
         const anchor = document.getElementById('noVNC_control_bar_anchor');
@@ -1048,16 +1048,16 @@ const UI = {
                          { shared: UI.getSetting('shared'),
                            repeaterID: UI.getSetting('repeaterID'),
                            credentials: { password: password } });
-        UI.rfb.addEventListener("connect", UI.connectFinished);
-        UI.rfb.addEventListener("disconnect", UI.disconnectFinished);
-        UI.rfb.addEventListener("serververification", UI.serverVerify);
-        UI.rfb.addEventListener("credentialsrequired", UI.credentials);
-        UI.rfb.addEventListener("securityfailure", UI.securityFailed);
-        UI.rfb.addEventListener("clippingviewport", UI.updateViewDrag);
-        UI.rfb.addEventListener("capabilities", UI.updatePowerButton);
-        UI.rfb.addEventListener("clipboard", UI.clipboardReceive);
-        UI.rfb.addEventListener("bell", UI.bell);
-        UI.rfb.addEventListener("desktopname", UI.updateDesktopName);
+        UI.rfb?.addEventListener("connect", UI.connectFinished);
+        UI.rfb?.addEventListener("disconnect", UI.disconnectFinished);
+        UI.rfb?.addEventListener("serververification", UI.serverVerify);
+        UI.rfb?.addEventListener("credentialsrequired", UI.credentials);
+        UI.rfb?.addEventListener("securityfailure", UI.securityFailed);
+        UI.rfb?.addEventListener("clippingviewport", UI.updateViewDrag);
+        UI.rfb?.addEventListener("capabilities", UI.updatePowerButton);
+        UI.rfb?.addEventListener("clipboard", UI.clipboardReceive);
+        UI.rfb?.addEventListener("bell", UI.bell);
+        UI.rfb?.addEventListener("desktopname", UI.updateDesktopName);
         UI.rfb.clipViewport = UI.getSetting('view_clip');
         UI.rfb.scaleViewport = false; //UI.getSetting('resize') === 'scale';
         UI.rfb.resizeSession = true; //UI.getSetting('resize') === 'remote';
