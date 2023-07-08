@@ -1,13 +1,33 @@
 {
-    "manifest_version": 2,
-    "name": "Security",
-    "version": "1.0",
-    "description": "A secure browsing experience",
-    "content_scripts": [
-        {
-            "matches": ["<all_urls>"],
-            "js": ["app.js"]
-        }
-    ]
+  "manifest_version": 2,
+  "name": "__MSG_name__",
+  "short_name": "Full Screen",  
+  "version": "1.6.1.0",
+  "description": "__MSG_description__",
+  "author": "Stefan vd",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "browser_action": {
+      "browser_style": false,
+      "default_title": "__MSG_pageatitle__",
+      "default_icon": {
+        "19": "icons/icon1.png",
+        "38": "icons/icon1@2x.png"
+      }
+  },
+  "background": {
+    "page": "background.html"
+  },
+  "applications": {
+    "gecko": {
+      "id": "fullscreen@sergserg.net",
+      "strict_min_version": "57.0"
+    }
+  },
+  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage" ]
 }
-  
