@@ -259,11 +259,11 @@ export default class Keyboard {
     grab() {
         //Log.Debug(">> Keyboard.grab");
 
-        this._target.addEventListener('keydown', this._eventHandlers.keydown);
-        this._target.addEventListener('keyup', this._eventHandlers.keyup);
+        this._target?.addEventListener('keydown', this._eventHandlers.keydown);
+        this._target?.addEventListener('keyup', this._eventHandlers.keyup);
 
         // Release (key up) if window loses focus
-        window.addEventListener('blur', this._eventHandlers.blur);
+        window?.addEventListener('blur', this._eventHandlers.blur);
 
         //Log.Debug("<< Keyboard.grab");
     }
@@ -271,9 +271,9 @@ export default class Keyboard {
     ungrab() {
         //Log.Debug(">> Keyboard.ungrab");
 
-        this._target.removeEventListener('keydown', this._eventHandlers.keydown);
-        this._target.removeEventListener('keyup', this._eventHandlers.keyup);
-        window.removeEventListener('blur', this._eventHandlers.blur);
+        this._target?.removeEventListener('keydown', this._eventHandlers.keydown);
+        this._target?.removeEventListener('keyup', this._eventHandlers.keyup);
+        window?.removeEventListener('blur', this._eventHandlers.blur);
 
         // Release (key up) all keys that are in a down state
         this._allKeysUp();
