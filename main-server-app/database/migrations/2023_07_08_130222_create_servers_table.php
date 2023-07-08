@@ -19,6 +19,8 @@ return new class extends Migration
             $table->boolean('ready')->default(false);
             $table->timestamp('used_at')->nullable();
             $table->timestamp('destroyed_at')->nullable();
+            $table->string('cookie_file')->nullable();
+            $table->json('user_data')->nullable();
             $table->timestamps();
         });
     }

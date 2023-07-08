@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\VultrApi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,11 +14,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::redirect('/', 'home');
+Route::get('test', function() { dd((new VultrApi)->test()); });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function () {
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+    Route::get('/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
+
+});

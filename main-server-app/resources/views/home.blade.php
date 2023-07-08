@@ -5,7 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">
+                    <h3 class="d-inline-block">
+                        Servers:
+                    </h2>
+                    <a href="{{ route('create') }}" class="btn btn-info float-end">
+                        + Add server 
+                    </a>
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,8 +20,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    @dump($instances)
+                    <div>
+                        @dump($servers)
+                    </div>
                 </div>
             </div>
         </div>

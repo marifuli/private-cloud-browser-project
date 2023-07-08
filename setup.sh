@@ -25,6 +25,7 @@ echo $mypasswd | vncpasswd -f > /$myuser/.vnc/passwd
 chown -R $myuser:$myuser /$myuser/.vnc
 chmod 0600 /$myuser/.vnc/passwd
 
+sleep 5
 vncserver
 vncserver -kill :1
 vncserver

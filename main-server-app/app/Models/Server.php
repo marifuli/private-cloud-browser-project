@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Server extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    protected $casts = [
+        'user_data' => 'array',
+        'ready' => 'boolean',
+        'used_at' => 'datetime',
+        'destroyed_at' => 'datetime',
+    ];
 }

@@ -14,4 +14,18 @@ class VultrApi
     {
         return $this->client->get('instances')->json();    
     }
+    function create_instance()
+    {
+        return $this->client->post('instances', [
+            'region' => 'lax',
+            'plan' => 'vc2-1c-2gb',
+            'os_id' => 1743, // Ubuntu 22.04
+            'script_id' => 'f4294c24-50e5-4c76-8405-3b4744461a3f',
+            'backups' => 'disabled'
+        ])->json();
+    } 
+    function test()
+    {
+        return $this->client->get('os')->json();
+    }
 }
