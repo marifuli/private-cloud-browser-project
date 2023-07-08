@@ -1,5 +1,6 @@
 1. Main server app
-- Install laravel with basic auth & block register 
+- Download cookie before instance deletion
+- Double check VNC before make it "ready"
 
 
 2. Vnc Server 

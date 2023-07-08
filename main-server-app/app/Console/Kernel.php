@@ -2,6 +2,9 @@
 
 namespace App\Console;
 
+use App\Jobs\CheckAndCreateMinimumLiveServers;
+use App\Jobs\DeleteUsedServers;
+use App\Jobs\UpdateServersStatus;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,6 +16,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->job(CheckAndCreateMinimumLiveServers::class)
+            ->everyFiveMinutes();
+        $schedule->job(DeleteUsedServers::class)
+            ->everyTwoMinutes();
+        $schedule->job(UpdateServersStatus::class)
+            ->everyTwoMinutes();
     }
 
     /**

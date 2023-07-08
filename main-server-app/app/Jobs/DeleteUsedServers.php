@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Models\Server;
+use App\Services\VultrApi;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -26,6 +28,21 @@ class DeleteUsedServers implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+        $vultr = new VultrApi;
+        foreach( 
+            Server::query()
+                ->whereNotNull('used_at')
+                ->whereNull('destroyed_at')
+                ->get() as $server
+        )
+        {
+            try {
+                // TODO: Need to get the cookie file before deletion
+                $vultr->delete_instance($server->server_id);
+            } catch (\Throwable $th) {}
+            $server->update([
+                'destroyed_at' => now(), 'ready' => false, 'status' => 'deleted'
+            ]);
+        }
     }
 }

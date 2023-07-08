@@ -14,6 +14,14 @@ class VultrApi
     {
         return $this->client->get('instances')->json();    
     }
+    function get_instance($id) 
+    {
+        return $this->client->get('instances/' . $id)->json();    
+    }
+    function delete_instance($id) 
+    {
+        return $this->client->delete('instances/' . $id)->json();    
+    }
     function create_instance()
     {
         return $this->client->post('instances', [

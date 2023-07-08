@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Services\VultrApi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::redirect('/', 'home');
-Route::get('test', function() { dd((new VultrApi)->test()); });
+Route::get('test', function() { 
+
+});
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
-    Route::get('/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
+    Route::get('deploy', function() { 
+        shell_exec("cd /var/www/app && git pull && composer update && php artisan migrate");
+    });
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::post('/home', [App\Http\Controllers\HomeController::class, 'store'])->name('home.sore');
+    Route::post('/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
+    Route::get('/delete/{server}', [App\Http\Controllers\HomeController::class, 'delete'])->name('delete');
 
 });
+
+Route::get('client', [ClientController::class, 'index'])->name('client');
