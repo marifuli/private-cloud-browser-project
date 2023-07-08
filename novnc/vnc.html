@@ -50,7 +50,7 @@
 
 <body>
 
-    <div id="noVNC_fallback_error" style="display: none;" class="noVNC_center">
+    <div id="noVNC_fallback_error" style="opacity: 0;" class="noVNC_center">
         <div>
             <div>noVNC encountered an error:</div>
             <br>
@@ -59,7 +59,7 @@
     </div>
 
     <!-- noVNC Control Bar -->
-    <div id="noVNC_control_bar_anchor" style="display: none;" class="noVNC_vcenter">
+    <div id="noVNC_control_bar_anchor" style="opacity: 0;" class="noVNC_vcenter">
 
         <div id="noVNC_control_bar" >
             <div id="noVNC_control_bar_handle" title="Hide/Show the control bar"><div></div></div>
@@ -250,16 +250,16 @@
 
     </div> <!-- End of noVNC_control_bar -->
 
-    <div id="noVNC_hint_anchor" style="display: none;" class="noVNC_vcenter">
+    <!-- <div id="noVNC_hint_anchor" style="display: none;" class="noVNC_vcenter">
         <div id="noVNC_control_bar_hint">
         </div>
-    </div>
+    </div> -->
 
     <!-- Status Dialog -->
-    <div style="display: none;" id="noVNC_status"></div>
+    <!-- <div style="display: none;" id="noVNC_status"></div> -->
 
     <!-- Connect button -->
-    <div class="noVNC_center" style="display: none;">
+    <!-- <div class="noVNC_center" style="display: none;">
         <div id="noVNC_connect_dlg">
             <p class="noVNC_logo" translate="no"><span>no</span>VNC</p>
             <div>
@@ -268,10 +268,10 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Server Key Verification Dialog -->
-    <div class="noVNC_center noVNC_connect_layer" style="display: none;">
+    <!-- <div class="noVNC_center noVNC_connect_layer" style="display: none;">
         <div id="noVNC_verify_server_dlg" class="noVNC_panel"><form>
             <div class="noVNC_heading">
                 Server identity
@@ -292,10 +292,10 @@
                 <input id="noVNC_reject_server_button" type="button" value="Reject" class="noVNC_submit">
             </div>
         </form></div>
-    </div>
+    </div> -->
 
     <!-- Password Dialog -->
-    <div class="noVNC_center noVNC_connect_layer" style="display: none;">
+    <!-- <div class="noVNC_center noVNC_connect_layer" style="display: none;">
         <div id="noVNC_credentials_dlg" class="noVNC_panel"><form>
             <div class="noVNC_heading">
                 Credentials
@@ -312,16 +312,16 @@
                 <input id="noVNC_credentials_button" type="submit" value="Send Credentials" class="noVNC_submit">
             </div>
         </form></div>
-    </div>
+    </div> -->
 
     <!-- Transition Screens -->
-    <div id="noVNC_transition" style="display: none;">
+    <!-- <div id="noVNC_transition" style="display: none;">
         <div id="noVNC_transition_text"></div>
         <div>
         <input type="button" id="noVNC_cancel_reconnect_button" value="Cancel" class="noVNC_submit">
         </div>
         <div class="noVNC_spinner"></div>
-    </div>
+    </div> -->
 
     <!-- This is where the RFB elements will attach -->
     <div id="noVNC_container">
@@ -329,13 +329,13 @@
              html attributes which attempt to disable text suggestions on the
              on-screen keyboard. Let's hope Chrome implements the ime-mode
              style for example -->
-        <textarea id="noVNC_keyboardinput" autocapitalize="off"
-            autocomplete="off" spellcheck="false" tabindex="-1"></textarea>
+        <!-- <textarea id="noVNC_keyboardinput" autocapitalize="off"
+            autocomplete="off" spellcheck="false" tabindex="-1"></textarea> -->
     </div>
 
-    <audio id="noVNC_bell">
+    <!-- <audio id="noVNC_bell">
         <source src="app/sounds/bell.oga" type="audio/ogg">
         <source src="app/sounds/bell.mp3" type="audio/mpeg">
-    </audio>
+    </audio> -->
  </body>
 </html>
