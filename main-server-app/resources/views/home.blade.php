@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    @dump($instances)
                 </div>
             </div>
         </div>

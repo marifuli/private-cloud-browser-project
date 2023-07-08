@@ -1059,8 +1059,8 @@ const UI = {
         UI.rfb.addEventListener("bell", UI.bell);
         UI.rfb.addEventListener("desktopname", UI.updateDesktopName);
         UI.rfb.clipViewport = UI.getSetting('view_clip');
-        UI.rfb.scaleViewport = UI.getSetting('resize') === 'scale';
-        UI.rfb.resizeSession = UI.getSetting('resize') === 'remote';
+        UI.rfb.scaleViewport = false; //UI.getSetting('resize') === 'scale';
+        UI.rfb.resizeSession = true; //UI.getSetting('resize') === 'remote';
         UI.rfb.qualityLevel = parseInt(UI.getSetting('quality'));
         UI.rfb.compressionLevel = parseInt(UI.getSetting('compression'));
         UI.rfb.showDotCursor = UI.getSetting('show_dot');
