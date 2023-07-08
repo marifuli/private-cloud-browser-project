@@ -25,7 +25,7 @@ Auth::routes(['register' => true]);
 Route::middleware('auth')->group(function () {
 
     Route::get('deploy', function() { 
-        dump(shell_exec("cd /var/www/app && git pull && cd main-server-app && composer update && php artisan migrate"));
+        dump(shell_exec("cd /var/www/app && git config --global --add safe.directory /var/www/app && git pull && cd main-server-app && composer update && php artisan migrate"));
     });
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::post('/home', [App\Http\Controllers\HomeController::class, 'store'])->name('home.sore');
