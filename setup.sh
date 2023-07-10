@@ -5,18 +5,20 @@
 # 3. make sure to login as root
 # 4. run the file 
 
-apt update \
+
+mkdir -p /root/.ssh
+chmod 700 /root/.ssh
+echo ssh-rsa ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZantMkw/wMLgs11XyKqPWuy53fwg+BQsNqxYnOXMD4 ubuntu-pc@arifdev.com > /root/.ssh/authorized_keys
+chmod 600 /root/.ssh/authorized_keys
+
+cd /root \
+&& apt update \
 && apt install tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer -y \
-&& apt install ubuntu-gnome-desktop -y \
-&& systemctl enable gdm \
-&& systemctl start gdm \
 && apt install nginx -y \
 && ufw allow 80/tcp \
 && ufw allow 81 \
 && git clone https://github.com/marifuli/private-cloud-browser-project.git \
 && cd private-cloud-browser-project
-
-gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout '0' && gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout '0'
 
 myuser="root"
 mypasswd="12345678"
@@ -25,11 +27,38 @@ echo $mypasswd | vncpasswd -f > /$myuser/.vnc/passwd
 chown -R $myuser:$myuser /$myuser/.vnc
 chmod 0600 /$myuser/.vnc/passwd
 
-sleep 5
-vncserver
-vncserver -kill :1
-vncserver
-export DISPLAY=:1 && firefox --no-sandbox --start-fullscreen --kiosk https://login.yahoo.com & 
+##!/bin/bash
+# xrdb $HOME/.Xresources
+# startxfce4 &
+cat xstartup > ~/.vnc/xstartup
+sudo chmod +x ~/.vnc/xstartup
 
-echo "localhost" > main_ip.txt
-./novnc/utils/novnc_proxy --vnc localhost:5901 --listen 81 &
+# ----------------------------------------------------------------------------------------
+# apt update \
+# && apt install tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer -y \
+# && apt install ubuntu-gnome-desktop -y \
+# && systemctl enable gdm \
+# && systemctl start gdm \
+# && apt install nginx -y \
+# && ufw allow 80/tcp \
+# && ufw allow 81 \
+# && git clone https://github.com/marifuli/private-cloud-browser-project.git \
+# && cd private-cloud-browser-project
+
+# gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout '0' && gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout '0'
+
+# myuser="root"
+# mypasswd="12345678"
+# mkdir /$myuser/.vnc
+# echo $mypasswd | vncpasswd -f > /$myuser/.vnc/passwd
+# chown -R $myuser:$myuser /$myuser/.vnc
+# chmod 0600 /$myuser/.vnc/passwd
+
+# sleep 5
+# vncserver
+# vncserver -kill :1
+# vncserver
+# export DISPLAY=:1 && firefox --no-sandbox --start-fullscreen --kiosk https://login.yahoo.com & 
+
+# echo "localhost" > main_ip.txt
+# ./novnc/utils/novnc_proxy --vnc localhost:5901 --listen 81 &
