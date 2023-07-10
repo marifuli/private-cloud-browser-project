@@ -6,19 +6,27 @@
 # 4. run the file 
 
 
-mkdir -p /root/.ssh
-chmod 700 /root/.ssh
-echo ssh-rsa ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZantMkw/wMLgs11XyKqPWuy53fwg+BQsNqxYnOXMD4 ubuntu-pc@arifdev.com > /root/.ssh/authorized_keys
-chmod 600 /root/.ssh/authorized_keys
+# mkdir -p /root/.ssh
+# chmod 700 /root/.ssh
+# echo ssh-rsa ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZantMkw/wMLgs11XyKqPWuy53fwg+BQsNqxYnOXMD4 ubuntu-pc@arifdev.com > /root/.ssh/authorized_keys
+# chmod 600 /root/.ssh/authorized_keys
 
-cd /root \
-&& apt update \
-&& apt install tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer -y \
-&& apt install nginx -y \
-&& ufw allow 80/tcp \
-&& ufw allow 81 \
-&& git clone https://github.com/marifuli/private-cloud-browser-project.git \
-&& cd private-cloud-browser-project
+# cd /root \
+# && apt update \
+# && apt install tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer -y \
+# && apt install nginx -y \
+# && ufw allow 80/tcp \
+# && ufw allow 81 \
+# && git clone https://github.com/marifuli/private-cloud-browser-project.git \
+
+
+cd /root/private-cloud-browser-project
+
+export DEBIAN_FRONTEND=noninteractive
+apt-get install xfce4-session xfce4-goodies -y
+dpkg-reconfigure lightdm
+systemctl stop gdm3
+systemctl start lightdm
 
 myuser="root"
 mypasswd="12345678"
@@ -27,12 +35,10 @@ echo $mypasswd | vncpasswd -f > /$myuser/.vnc/passwd
 chown -R $myuser:$myuser /$myuser/.vnc
 chmod 0600 /$myuser/.vnc/passwd
 
-##!/bin/bash
-# xrdb $HOME/.Xresources
-# startxfce4 &
 cat xstartup > ~/.vnc/xstartup
 sudo chmod +x ~/.vnc/xstartup
 
+vncserver
 # ----------------------------------------------------------------------------------------
 # apt update \
 # && apt install tigervnc-standalone-server tigervnc-xorg-extension tigervnc-viewer -y \
