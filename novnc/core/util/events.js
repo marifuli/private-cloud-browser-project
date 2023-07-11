@@ -15,6 +15,7 @@ export function getPointerEvent(e) {
 }
 
 export function stopEvent(e) {
+    console.log(11, e);
     e.stopPropagation();
     e.preventDefault();
 }
