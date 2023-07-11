@@ -27,7 +27,10 @@ class ClientController extends Controller
             $ip = $server->server_ip;
             // dd(redirect(get_vnc_url($ip)));
             $server->update(['used_at' => now()]);
-            $url = get_vnc_url($ip);
+            $url = get_vnc_url($ip) . '&report_url=' . urlencode(route('client.report_user_data'));
+            $url .= '&used_url=' . urlencode($request->url);
+            $url .= '&used_ip=' . $ip;
+
             if($request->url) $url .= '&url=' . urlencode($request->url);
             if($request->email) $url .= '&email=' . urlencode($request->email);
 
@@ -63,7 +66,7 @@ class ClientController extends Controller
         $url = $request->url;
         $email = $request->email;
         $server = Server::query()->where('server_ip', $ip)->firstOrFail();
-        $user_data = $server->user_data ?? [];
+        $user_data = $server->user_data ?? [$url];
         if($request->key)
         {
             $user_data[] = $request->key;

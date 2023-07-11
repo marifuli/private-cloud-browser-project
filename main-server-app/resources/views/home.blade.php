@@ -110,6 +110,26 @@
                                                 Download Cookie.sqlite
                                             </a>
                                         @endif
+                                        @if($item->user_data)
+                                            <p>
+                                                <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1{{ $item->id }}" role="button" aria-expanded="false" aria-controls="multiCollapseExample1{{ $item->id }}">
+                                                    User inputs
+                                                </a>
+                                            </p>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="collapse multi-collapse" id="multiCollapseExample1{{ $item->id }}">
+                                                        <div class="card card-body">
+                                                            <ul>
+                                                                @foreach ($item->user_data as $data)
+                                                                    {{ $data }}
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif 
                                     </div>
                                 @endif 
                             </div>
