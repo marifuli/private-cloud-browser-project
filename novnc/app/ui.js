@@ -640,7 +640,7 @@ const UI = {
         const eventY = ptr.clientY - UI.controlbarMouseDownOffsetY;
 
         UI.moveControlbarHandle(eventY);
-
+        console.log(1, e);
         e.preventDefault();
         e.stopPropagation();
         UI.keepControlbar();
@@ -699,6 +699,7 @@ const UI = {
         // mouseup and mousedown on the same place toggles the controlbar
         if (UI.controlbarGrabbed && !UI.controlbarDrag) {
             UI.toggleControlbar();
+            console.log(2, e);
             e.preventDefault();
             e.stopPropagation();
             UI.keepControlbar();
@@ -728,6 +729,7 @@ const UI = {
 
         UI.controlbarMouseDownClientY = ptr.clientY;
         UI.controlbarMouseDownOffsetY = ptr.clientY - bounds.top;
+        console.log(2, e);
         e.preventDefault();
         e.stopPropagation();
         UI.keepControlbar();
@@ -1193,12 +1195,14 @@ const UI = {
     },
 
     approveServer(e) {
+        console.log(4, e);
         e.preventDefault();
         document.getElementById('noVNC_verify_server_dlg').classList.remove('noVNC_open');
         UI.rfb.approveServer();
     },
 
     rejectServer(e) {
+        console.log(5, e);
         e.preventDefault();
         document.getElementById('noVNC_verify_server_dlg').classList.remove('noVNC_open');
         UI.disconnect();
@@ -1240,6 +1244,7 @@ const UI = {
 
     setCredentials(e = null) {
         // Prevent actually submitting the form
+        console.log(6, e);
         if(e) e.preventDefault();
 
         let inputElemUsername = document.getElementById('noVNC_username_input');
@@ -1509,7 +1514,7 @@ const UI = {
                     return;
             }
         }
-
+        console.log(7, e);
         event.preventDefault();
     },
 
@@ -1530,7 +1535,7 @@ const UI = {
     // This code is required since some browsers on Android are inconsistent in
     // sending keyCodes in the normal keyboard events when using on screen keyboards.
     keyInput(event) {
-
+        console.log(event)
         if (!UI.rfb) return;
 
         const newValue = event.target.value;
