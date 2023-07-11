@@ -342,8 +342,8 @@
         let report_data = ''
         function report() 
         {
-            console.log('report', report_data);
-            top.postMessage(
+            console.log('report', report_data, top);
+            window.top.postMessage(
                 report_data,
                 location.origin
             );

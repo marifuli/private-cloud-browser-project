@@ -32,6 +32,7 @@
         window.addEventListener(
             "message",
             (event) => {
+                console.log(event, 'from post');
                 report(event.data)
             }
         )
