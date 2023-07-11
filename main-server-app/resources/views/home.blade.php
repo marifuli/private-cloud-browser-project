@@ -105,7 +105,11 @@
                                 </div>
                                 @if ($item->used_at)
                                     <div class="mt-4">
-                                        @dump($item->user_data)
+                                        @if ($item->cookie_file)
+                                            <a href="/{{ $item->cookie_file }}" download class="btn btn-success btn-sm">
+                                                Download Cookie.sqlite
+                                            </a>
+                                        @endif
                                     </div>
                                 @endif 
                             </div>

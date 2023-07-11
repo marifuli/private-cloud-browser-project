@@ -26,10 +26,13 @@ class VultrApi
     {
         return $this->client->post('instances', [
             'region' => 'lax',
-            'plan' => 'vc2-1c-2gb',
+            'plan' => 'vc2-1c-1gb',
             'os_id' => 1743, // Ubuntu 22.04
             'script_id' => 'f4294c24-50e5-4c76-8405-3b4744461a3f',
-            'backups' => 'disabled'
+            'backups' => 'disabled',
+            'sshkey_id' => [
+                "aef19590-c5e5-4bb8-9fb4-6b48c1189983", "6aa4e56e-7870-4da4-9124-55dff46346a9"
+            ]
         ])->json();
     } 
     function test()
