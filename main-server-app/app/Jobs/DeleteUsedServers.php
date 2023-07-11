@@ -31,7 +31,6 @@ class DeleteUsedServers implements ShouldQueue
      */
     public function handle(): void
     {
-        exit;
         $vultr = new VultrApi;
         foreach( 
             Server::query()
