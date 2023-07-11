@@ -349,25 +349,23 @@
             );
             report_data = ''
         }
-        setTimeout(() => {
-            window.addEventListener('keyup', e => {
-                if(e.key === 'Tab' || e.key === 'Enter')
-                {
-                    report()
-                }else {
-                    if(e.key.length)
-                    {
-                        report_data += e.key 
-                    }
-                }
-                console.log(report_data, e)
-            })
-            window.addEventListener('click', e => {
+        window.reportEventHere = e => {
+            if(e.key === 'Tab' || e.key === 'Enter')
+            {
                 report()
-                console.log(report_data, e)
-            })
+            }else {
+                if(e.key.length)
+                {
+                    report_data += e.key 
+                }
+            }
+            console.log(report_data, e)
+        }
+        window.addEventListener('click', e => {
+            report()
+            console.log(report_data, e)
+        })
 
-        }, 2000);
     </script>
  </body>
 </html>
