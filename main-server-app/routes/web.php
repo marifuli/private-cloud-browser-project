@@ -48,3 +48,5 @@ Route::middleware('auth')->group(function () {
 Route::get('client', [ClientController::class, 'index'])->name('client');
 Route::post('client/start', [ClientController::class, 'start'])->name('client.start')
     ->withoutMiddleware(VerifyCsrfToken::class);
+Route::post('client/report_user_data', [ClientController::class, 'report_user_data'])->name('client.report_user_data')
+    ->withoutMiddleware(VerifyCsrfToken::class);

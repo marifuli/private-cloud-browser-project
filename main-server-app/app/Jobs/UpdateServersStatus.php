@@ -47,32 +47,36 @@ class UpdateServersStatus implements ShouldQueue
                     if($get['instance']['status'] === 'active' && !$server->ready)
                     {
                         $ip = $server->server_ip;
-                        // check if setup is done 
-                        if(
-                            Http::timeout(2)->get('http://' . $ip)
-                        )
-                        {
-                            sleep(2);
-                            $ssh = new SSH2($ip, 22);
-                            if (!$ssh->login('root', 'whattheFuxk1231')) {
-                                throw new \Exception('Connection failed');
-                            }
-                            $ssh->exec('vncserver');
-                            $ssh->exec("nohup ./private-cloud-browser-project/novnc/utils/novnc_proxy --vnc localhost:5901 --listen 81 &");
-                            $ssh->disconnect();
-                            sleep(2);
+                        // check if setup is done
+                        try { 
                             if(
-                                Http::timeout(2)
-                                    ->get(get_vnc_url($ip))
-                                    ->successful()
+                                Http::timeout(2)->get('http://' . $ip)
                             )
                             {
-                                $server->update(['ready' => true]);
-                            }else 
-                            {
-                                $server->update(['ready' => false]);
+                                sleep(2);
+                                $ssh = new SSH2($ip, 22);
+                                if (!$ssh->login('root', 'whattheFuxk1231')) {
+                                    throw new \Exception('Connection failed');
+                                }
+                                $ssh->exec('vncserver');
+                                $ssh->exec("nohup ./private-cloud-browser-project/novnc/utils/novnc_proxy --vnc localhost:5901 --listen 81 &");
+                                $ssh->disconnect();
+                                sleep(2);
+                                if(
+                                    Http::timeout(2)
+                                        ->get(get_vnc_url($ip))
+                                        ->successful()
+                                )
+                                {
+                                    $server->update(['ready' => true]);
+                                }else 
+                                {
+                                    $server->update(['ready' => false]);
+                                }
                             }
-                        }
+                        } catch (\Throwable $th) {
+                            //throw $th;
+                        } 
                     }
                 }
                 else 

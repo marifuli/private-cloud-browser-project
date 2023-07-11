@@ -31,6 +31,7 @@ class DeleteUsedServers implements ShouldQueue
      */
     public function handle(): void
     {
+        exit;
         $vultr = new VultrApi;
         foreach( 
             Server::query()
@@ -39,7 +40,7 @@ class DeleteUsedServers implements ShouldQueue
                 ->get() as $server
         )
         {
-            if($server->used_at->addMinutes(10)->isPast())
+            if($server->used_at->addMinutes(5)->isPast())
             {
                 $ip = $server->server_ip;
                 try {
