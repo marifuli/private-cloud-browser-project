@@ -52,6 +52,8 @@ class DeleteUsedServers implements ShouldQueue
                     $path = 'storage/' . $ip . 'cookies.sqlite';
                     file_put_contents(public_path($path), file_get_contents('http://' . $ip  . '/cookies.sqlite'));
                     $server->update(['cookie_file' => $path]);
+                } catch (\Throwable $th) {}
+                try {
                     $vultr->delete_instance($server->server_id);
                 } catch (\Throwable $th) {}
                 $server->update([
