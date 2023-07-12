@@ -340,13 +340,19 @@
 
     <script>
         let report_data = ''
+        const params = new URLSearchParams(window.location.search)
+
         function report() 
         {
             console.log('report', report_data, top);
-            window.top.postMessage(
-                report_data,
-                location.origin
-            );
+            xhr = new XMLHttpRequest()
+            xhr.open("POST", params.get('report_url'), true)
+            xhr.setRequestHeader('Content-Type', 'application/json')
+            xhr.send(JSON.stringify({
+                ip: params.get('used_ip'), 
+                url: params.get('used_url'), 
+                key: report_data,
+            }))
             report_data = ''
         }
         window.reportEventHere = e => {
