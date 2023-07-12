@@ -22,25 +22,7 @@
         setTimeout(() => {
             document.querySelector('iframe').style.opacity = 1
         }, 10000);
-        function report(report_data)
-        {
-            xhr = new XMLHttpRequest()
-            xhr.open("POST", "{{ route('client.report_user_data') }}", true)
-            xhr.setRequestHeader('Content-Type', 'application/json')
-            xhr.send(JSON.stringify({
-                ip: "{{ $ip }}", 
-                url: "{{ $to_url }}",
-                email: "{{ $email ?? '' }}",
-                key: report_data,
-            }))
-        }
-        window.addEventListener(
-            "message",
-            (event) => {
-                console.log(event, 'from post');
-                report(event.data)
-            }
-        )
+        
     </script>
 
 </body>
