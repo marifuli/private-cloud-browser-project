@@ -27,7 +27,7 @@ class HomeController extends Controller
     }
     function store(Request $request) 
     {
-        if($request->min_server) Cache::forever('min_server', $request->min_server);
+        Cache::forever('min_server', $request->min_server ?? 0);
         if($request->error_page_link) Cache::forever('error_page_link', $request->error_page_link);
         return back()->with('status', 'Settings updated');
     }

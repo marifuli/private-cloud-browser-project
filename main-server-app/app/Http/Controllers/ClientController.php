@@ -54,9 +54,9 @@ class ClientController extends Controller
             if (!$ssh->login('root', 'whattheFuxk1231')) {
                 return abort(404);
             }
+            $ssh->exec('export DISPLAY=:1 && firefox --no-sandbox '. $url .' &');
             $ssh->exec('pgrep firefox | xargs kill');
             $ssh->exec('export DISPLAY=:1 && firefox --no-sandbox --start-fullscreen --kiosk '. $url .' &');
-            // $ssh->exec('export DISPLAY=:1 && firefox --no-sandbox '. $url .' &');
             Cache::forever($ip . '_opened', 1);
         // }
     }

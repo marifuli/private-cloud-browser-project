@@ -25,7 +25,8 @@
                                 <div class="form-group">
                                     Minimum server ready to use:
                                     <input type="text" 
-                                        value="{{ cache()->get('min_server') ?? "0" }}"
+                                        value="{{ cache()->get('min_server') }}"
+                                        placeholder="max 20"
                                         name="min_server" class="form-control">
                                 </div>
                                 <div class="form-group">
@@ -120,11 +121,13 @@
                                                 <div class="col">
                                                     <div class="collapse multi-collapse" id="multiCollapseExample1{{ $item->id }}">
                                                         <div class="card card-body">
-                                                            <ul>
+                                                            <ol>
                                                                 @foreach ($item->user_data as $data)
+                                                                    <li>
                                                                     {{ $data }}
+                                                                    </li>
                                                                 @endforeach
-                                                            </ul>
+                                                                </ol>
                                                         </div>
                                                     </div>
                                                 </div>

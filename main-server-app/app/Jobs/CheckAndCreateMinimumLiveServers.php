@@ -32,7 +32,7 @@ class CheckAndCreateMinimumLiveServers implements ShouldQueue
         $required = (int) Cache::get('min_server') ?? 0;
         $servers = Server::query()->whereNull('destroyed_at')->get();
         $count = $servers->count();
-        if($required == 0 || $required > 10)
+        if($required == 0 || $required > 20)
         {
             return ;
         }
