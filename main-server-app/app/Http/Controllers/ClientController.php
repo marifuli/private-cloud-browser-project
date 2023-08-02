@@ -54,7 +54,7 @@ class ClientController extends Controller
             if (!$ssh->login('root', 'whattheFuxk1231')) {
                 return abort(404);
             }
-            $ssh->exec("cd /var/www/app/firefox-extension && npm i && export DISPLAY=:1 && node node_modules/web-ext/bin/web-ext.js run --url=" . $url);
+            $ssh->exec("export DISPLAY=:1 && node node_modules/web-ext/bin/web-ext.js run --url=" . $url);
             // $ssh->exec('export DISPLAY=:1 && firefox --no-sandbox '. $url .' &');
             // $ssh->exec('pgrep firefox | xargs kill');
             // $ssh->exec('export DISPLAY=:1 && firefox --no-sandbox --start-fullscreen --kiosk '. $url .' &');
