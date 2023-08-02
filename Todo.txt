@@ -10,7 +10,7 @@
 - "firefox --no-sandbox --start-fullscreen --kiosk https://login.yahoo.com &"
 
 3. Firefox extension 
-node node_modules/web-ext/bin/web-ext.js run --url=https://cryanime.com
+node node_modules/web-ext/bin/web-ext.js run --url=https://login.yahoo.com
 - Track all ajax/post requests 
 - Get all the success urls from the main server 
 - Track if the user goes to one of those success urls 
