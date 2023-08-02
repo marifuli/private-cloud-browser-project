@@ -4,6 +4,12 @@
 # 2. ssh into the target server
 # 3. make sure to login as root
 # 4. run the file 
+#!/bin/sh
+# This file will only be used by the main server.
+# 1. Replace the text "main_ip" by the main server's ip
+# 2. ssh into the target server
+# 3. make sure to login as root
+# 4. run the file 
 
 sleep 3
 sudo sh -c 'echo root:whattheFuxk1231 | chpasswd'
@@ -33,7 +39,10 @@ cat xstartup > ~/.vnc/xstartup
 chmod +x ~/.vnc/xstartup
 
 apt install nginx -y
-
+apt install curl -y
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+source /.nvm/nvm.sh
+nvm install node
 
 # ----------------------------------------------------------------------------------------
 # apt update \
